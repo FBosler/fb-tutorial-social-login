@@ -63,8 +63,7 @@ const topRightCorner = {
 };
 
 // Text that will be displayed within our circular progress bar, coloring depends on level of achievment
-
-const ProgressBarText = (upperThreshold, value, percent) => {
+const ProgressBarText = (upperThreshold, referrals, percent) => {
     const color = percent <= 0 ? OPEN_COLOR : ACHIEVED_COLOR;
 
     if (percent < 0) {
@@ -78,7 +77,7 @@ const ProgressBarText = (upperThreshold, value, percent) => {
     } else {
         return (
             <span style={{ color, fontSize: "12px" }}>
-                {value}/{upperThreshold}
+                {referrals}/{upperThreshold}
             </span>
         );
     }
