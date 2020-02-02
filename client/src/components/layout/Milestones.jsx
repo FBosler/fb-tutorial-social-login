@@ -63,29 +63,32 @@ const top_right_corner = {
 };
 
 // Text that will be displayed within our circular progress bar, coloring depends on level of achievment
-const ProgressBarText = (upper_threshold, value, percent) => {
-    const color = percent === 0 ? OPEN_COLOR : ACHIEVED_COLOR;
 
-    return (
-        <span style={{ color, fontSize: "12px" }}>
-            {percent >= 100 ? (
-                <div>
-                    {upper_threshold} <MdCheck style={{ color }} />
-                </div>
-            ) : (
-                <div>
-                    {value}/{upper_threshold}
-                </div>
-            )}
-        </span>
-    );
+const ProgressBarText = (upper_threshold, value, percent) => {
+    const color = percent <= 0 ? OPEN_COLOR : ACHIEVED_COLOR;
+
+    if (percent < 0) {
+        return <span style={{ color, fontSize: "12px" }}>{upper_threshold}</span>;
+    } else if (percent >= 100) {
+        return (
+            <span style={{ color, fontSize: "12px" }}>
+                {upper_threshold} <MdCheck style={{ color }} />
+            </span>
+        );
+    } else {
+        return (
+            <span style={{ color, fontSize: "12px" }}>
+                {value}/{upper_threshold}
+            </span>
+        );
+    }
 };
 
 // A milestone component, including the circular progress bar
 const Milestone = (url, lower_threshold, upper_threshold, referrals) => {
-    const range = upper_threshold - lower_threshold;
-    const more_than_lower = Math.min(referrals - lower_threshold, range);
-    const percentage = referrals >= upper_threshold ? 100 : (more_than_lower / range) * 100;
+    const required_referrals = upper_threshold - lower_threshold;
+    const achieved_referrals = referrals - lower_threshold;
+    const percentage = (achieved_referrals / required_referrals) * 100;
     const text = ProgressBarText(upper_threshold, referrals, percentage);
 
     return (
