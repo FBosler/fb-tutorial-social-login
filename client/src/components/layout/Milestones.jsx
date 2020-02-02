@@ -1,30 +1,36 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-import { MdCheck } from "react-icons/md";
+import { Container, Row, Col } from "react-bootstrap"; // Layout
+import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar"; // Progress bar
+import "react-circular-progressbar/dist/styles.css"; // Styles for progress bar
+import { MdCheck } from "react-icons/md"; // Checkmark
 
+// constants
 const ACHIEVED_COLOR = "#049e51";
 const OPEN_COLOR = "grey";
 
+// list of our milestones, can dynamically be extended or shortened, depending on preferences.
+// image_location   := location of the image file
+// lower_threshold  := min threshold to start working towards the milestones
+// upper_threshold  := threshold that needs to be reached to achieve the milestone
 const milestone_list = [
     {
-        url: "assets/1_kitten.jpg",
+        image_location: "assets/1_kitten.jpg",
         lower_threshold: 0,
         upper_threshold: 5
     },
     {
-        url: "assets/2_kitten.jpg",
+        image_location: "assets/2_kitten.jpg",
         lower_threshold: 5,
         upper_threshold: 10
     },
     {
-        url: "assets/3_kitten.jpg",
+        image_location: "assets/3_kitten.jpg",
         lower_threshold: 10,
         upper_threshold: 20
     }
 ];
 
+// this is a trick based on https://stackoverflow.com/questions/1495407/maintain-the-aspect-ratio-of-a-div-with-css to force an aspect ratio of 16:9.
 const aspect_ratio = {
     display: "block",
     width: "100%",
@@ -33,6 +39,7 @@ const aspect_ratio = {
     padding: "56.25% 0 0 0"
 };
 
+// absolut positioning with pos 0,0,0,0 is also required for the aspect ratio to work
 const col_style = {
     position: "absolute",
     left: 0,
@@ -44,6 +51,7 @@ const col_style = {
     backgroundRepeat: "no-repeat"
 };
 
+// turns the elemnt into a round one, that is placed in the, you guessed it, top-right corner
 const top_right_corner = {
     position: "absolute",
     width: "40px",
@@ -54,7 +62,7 @@ const top_right_corner = {
     backgroundColor: "white"
 };
 
-const innerText = (upper_threshold, value, percent) => {
+const ProgressBarText = (upper_threshold, value, percent) => {
     const color = percent === 0 ? OPEN_COLOR : ACHIEVED_COLOR;
 
     return (
@@ -76,7 +84,7 @@ const Milestone = (url, lower_threshold, upper_threshold, referrals) => {
     const range = upper_threshold - lower_threshold;
     const more_than_lower = Math.min(referrals - lower_threshold, range);
     const percentage = referrals >= upper_threshold ? 100 : (more_than_lower / range) * 100;
-    const text = innerText(upper_threshold, referrals, percentage);
+    const text = ProgressBarText(upper_threshold, referrals, percentage);
 
     return (
         <div style={{ paddingTop: "25px" }}>
@@ -110,7 +118,7 @@ const Milestones = props => {
                 {milestone_list.map(function(item) {
                     return (
                         <Col xs={12} sm={6} md={4}>
-                            {Milestone(item.url, item.lower_threshold, item.upper_threshold, referrals)}
+                            {Milestone(item.image_location, item.lower_threshold, item.upper_threshold, referrals)}
                         </Col>
                     );
                 })}
