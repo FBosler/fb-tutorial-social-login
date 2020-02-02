@@ -62,6 +62,7 @@ const top_right_corner = {
     backgroundColor: "white"
 };
 
+// Text that will be displayed within our circular progress bar, coloring depends on level of achievment
 const ProgressBarText = (upper_threshold, value, percent) => {
     const color = percent === 0 ? OPEN_COLOR : ACHIEVED_COLOR;
 
@@ -80,6 +81,7 @@ const ProgressBarText = (upper_threshold, value, percent) => {
     );
 };
 
+// A milestone component, including the circular progress bar
 const Milestone = (url, lower_threshold, upper_threshold, referrals) => {
     const range = upper_threshold - lower_threshold;
     const more_than_lower = Math.min(referrals - lower_threshold, range);
@@ -109,6 +111,7 @@ const Milestone = (url, lower_threshold, upper_threshold, referrals) => {
     );
 };
 
+// All Milestones, generated based off of milestone_list
 const Milestones = props => {
     const referrals = props.referrals || 0;
 
