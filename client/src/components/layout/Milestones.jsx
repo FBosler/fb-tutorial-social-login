@@ -113,21 +113,23 @@ const Milestone = (url, lowerThreshold, upperThreshold, referrals) => {
     );
 };
 
-// All Milestones, generated based off of milestone_list
+// All Milestones, generated based off of milestoneList
 const Milestones = props => {
     const referrals = props.referrals || 0;
 
     return (
         <Container>
-            <Row>
-                {milestoneList.map(function(item) {
-                    return (
-                        <Col xs={12} sm={6} md={4}>
-                            {Milestone(item.imageLocation, item.lowerThreshold, item.upperThreshold, referrals)}
-                        </Col>
-                    );
-                })}
-            </Row>
+            <div style={{ padding: "25px" }}>
+                <Row>
+                    {milestoneList.map(function(item) {
+                        return (
+                            <Col xs={12} sm={6} md={4}>
+                                {Milestone(item.imageLocation, item.lowerThreshold, item.upperThreshold, referrals)}
+                            </Col>
+                        );
+                    })}
+                </Row>
+            </div>
         </Container>
     );
 };
