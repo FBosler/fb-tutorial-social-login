@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Milestones from "./components/layout/Milestones";
+import Landing from "./components/layout/Landing";
 import About from "./components/layout/About";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +10,7 @@ const App = () => {
         <Router>
             <div className="App">
                 <Route exact path="/">
-                    <Milestones referrals={12} />
+                    <Landing />
                 </Route>
                 <Route exact path="/about">
                     <About />
