@@ -15,8 +15,17 @@ export const AspectRatio = styled("div")`
     padding: 56.25% 0 0 0;
 `;
 
-export const TopPaddedDiv = styled("div")`
-    padding-top: 20px;
+// absolut positioning with pos 0,0,0,0 is also required for the aspect ratio to work
+export const BackgroundImage = styled("div")`
+  background-image: url("${props => props.url}");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  padding: 10px;
 `;
 
 export const PaddedRow = styled(Row)`
@@ -30,19 +39,6 @@ export const ColoredSpan = styled("span")`
 
 export const ColoredCheckMark = styled(MdCheck)`
     color: ${props => (props.percent <= 0 ? OPEN_COLOR : ACHIEVED_COLOR)};
-`;
-
-// absolut positioning with pos 0,0,0,0 is also required for the aspect ratio to work
-export const BackgroundImage = styled("div")`
-  background-image: url("${props => props.url}");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  right: 0;
-  padding: 10px;
 `;
 
 // turns the elemnt into a round one that is placed in the, you guessed it, top-right corner

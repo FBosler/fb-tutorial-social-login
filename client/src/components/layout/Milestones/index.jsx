@@ -8,7 +8,6 @@ import {
     AspectRatio,
     BackgroundImage,
     TopRightCorner,
-    TopPaddedDiv,
     ColoredCheckMark,
     ColoredSpan,
     PaddedRow
@@ -63,7 +62,7 @@ const Milestone = (url, lowerThreshold, upperThreshold, referrals) => {
     const progressBarText = ProgressBarText(upperThreshold, referrals, percentage);
 
     return (
-        <TopPaddedDiv>
+        <div>
             <AspectRatio>
                 <BackgroundImage className={"z-depth-4"} url={url}>
                     <TopRightCorner className={"z-depth-2"}>
@@ -81,7 +80,7 @@ const Milestone = (url, lowerThreshold, upperThreshold, referrals) => {
                     </TopRightCorner>
                 </BackgroundImage>
             </AspectRatio>
-        </TopPaddedDiv>
+        </div>
     );
 };
 
@@ -90,17 +89,15 @@ const Milestones = props => {
     const referrals = props.referrals || 0;
 
     return (
-        <TopPaddedDiv>
-            <PaddedRow>
-                {milestoneList.map(function(item) {
-                    return (
-                        <Col xs={12} sm={6} md={4}>
-                            {Milestone(item.imageLocation, item.lowerThreshold, item.upperThreshold, referrals)}
-                        </Col>
-                    );
-                })}
-            </PaddedRow>
-        </TopPaddedDiv>
+        <PaddedRow>
+            {milestoneList.map(function(item) {
+                return (
+                    <Col xs={6} md={4} style={{ paddingBottom: "10px" }}>
+                        {Milestone(item.imageLocation, item.lowerThreshold, item.upperThreshold, referrals)}
+                    </Col>
+                );
+            })}
+        </PaddedRow>
     );
 };
 
