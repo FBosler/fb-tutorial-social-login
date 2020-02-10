@@ -40,7 +40,7 @@ const Landing = () => {
                 <SignupLoginModal show={show} setShow={setShow} />
             </LandingBackground>
 
-            <Container>
+            <Container style={{ minHeight: "900px" }}>
                 <ResponsiveHeader4>Only a couple of invites ...</ResponsiveHeader4>
                 <p>
                     and you'll start collecting{" "}
@@ -48,7 +48,7 @@ const Landing = () => {
                         🐱
                     </span>
                 </p>
-                <Milestones referrals={12} />
+                <Milestones referrals={0} />
             </Container>
         </div>
     );

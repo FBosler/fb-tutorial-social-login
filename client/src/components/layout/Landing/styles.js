@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { device } from "../../styles/styles";
+import { device } from "../../styles";
 import { Col, Row, Button } from "react-bootstrap";
 
 export const LandingBackground = styled("div")`
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("${props => props.url}");
-    background-position: 50% 50%;
+    background-position: 50% 60%;
     background-size: cover;
     border-bottom: grey 1px solid;
     height: 200px;
