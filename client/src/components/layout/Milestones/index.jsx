@@ -92,7 +92,7 @@ const Milestones = props => {
         <PaddedRow>
             {milestoneList.map(function(item) {
                 return (
-                    <Col xs={6} md={4} style={{ paddingBottom: "10px" }}>
+                    <Col xs={6} md={4} style={{ paddingBottom: "10px" }} key={item.imageLocation}>
                         {Milestone(item.imageLocation, item.lowerThreshold, item.upperThreshold, referrals)}
                     </Col>
                 );

@@ -21,7 +21,7 @@ export const ResponsiveHeader4 = styled("h4")`
     font-weight: bolder;
 `;
 
-export const MutedSpan = styled("spann")`
+export const MutedSpan = styled("span")`
     font-size: 80%;
     font-weight: 400;
 `;
